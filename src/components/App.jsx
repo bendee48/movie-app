@@ -1,23 +1,28 @@
 import { useState } from 'react'
-import '../App.css'
+import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [reccomendation, setReccomendation] = useState("");
+
+  async function handleGetFilm() {
+    try {
+      const response = await fetch("http://localhost:3001/api/film/lucky");
+      if (!response.ok) {
+        throw new Error(`Uh oh... Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(reccomendation, data)
+      setReccomendation(data.result);
+    } catch(e) {
+      console.log(e.message)
+    }
+  }
 
   return (
     <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Movie App</h1>
+      <button onClick={handleGetFilm}>I feel lucky punk</button>
+      <p>{reccomendation}</p>
     </>
   )
 }
