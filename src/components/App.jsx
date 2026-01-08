@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Result from './Result'
+import FilmSelector from './FilmSelector';
 
 function App() {
   const [reccomendation, setReccomendation] = useState("");
@@ -30,6 +31,7 @@ function App() {
     <>
       <h1>Movie App</h1>
       <button onClick={handleGetFilm} disabled={isLoading}>I feel lucky punk</button>
+      <FilmSelector />
       {isLoading && <p>Loading...</p>}
       {error && <p>{error}</p>}
       {!isLoading && !error && <Result content={reccomendation}/>}
