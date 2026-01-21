@@ -27,12 +27,38 @@ function App() {
     }
   }
 
+  function handleSubmit(e) {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const data = Object.fromEntries(formData);
+    handleGetFilmWithOptions(data)
+  }
+
+  async function handleGetFilmWithOptions(searchOptions={}) {
+    setIsLoading(true);
+    const params = new URLSearchParams(searchOptions);
+
+    try {
+      const response = await fetch(`http://localhost:3001/api/film/?${encodeURI(params.toString())}`);
+      if (!response.ok) {
+        throw new Error(`Uh oh... Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setReccomendation(data.result);
+    } catch(e) {
+      console.log(e.message)
+      setError(e.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <>
       <h1>Movie App</h1>
       <button onClick={handleGetFilm} disabled={isLoading}>I feel lucky punk</button>
-      <FilmSelector />
-      {isLoading && <p>Loading...</p>}
+      <FilmSelector submitHandler={handleSubmit}/>
+      {isLoading && <p>Thinking...</p>}
       {error && <p>{error}</p>}
       {!isLoading && !error && <Result content={reccomendation}/>}
     </>
