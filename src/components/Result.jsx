@@ -1,7 +1,12 @@
-function Result({ title, year, directory, summary}) {
+function Result({ title, year, director, summary}) {
+  if (!title) {
+    return null;
+  }
+  
   return (
-    <div>
-      {title}
+    <div className="result">
+      <h3>{title} ({year}) - {director}</h3>
+      <p>{summary}</p>
     </div>
   )
 }

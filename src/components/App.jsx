@@ -11,7 +11,7 @@ function App() {
   async function handleGetFilm() {
     setIsLoading(true);
     const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
-    
+
     try {
       const response = await fetch("http://localhost:3001/api/film/lucky" , {
         method: "POST",
