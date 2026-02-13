@@ -42,29 +42,44 @@ function App() {
   }
 
   function handleSubmit(e) {
-  //   e.preventDefault()
-  //   const formData = new FormData(e.currentTarget)
-  //   const data = Object.fromEntries(formData);
-  //   handleGetFilmWithOptions(data)
-  // }
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const data = Object.fromEntries(formData);
+    handleGetFilmWithOptions(data)
+  }
 
-  // async function handleGetFilmWithOptions(searchOptions={}) {
-  //   setIsLoading(true);
-  //   const params = new URLSearchParams(searchOptions);
+  async function handleGetFilmWithOptions(searchOptions={}) {
+    setIsLoading(true);
+    const params = new URLSearchParams(searchOptions);
+    const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
 
-  //   try {
-  //     const response = await fetch(`http://localhost:3001/api/film/?${encodeURI(params.toString())}`);
-  //     if (!response.ok) {
-  //       throw new Error(`Uh oh... Status: ${response.status}`);
-  //     }
-  //     const data = await response.json();
-  //     setReccomendation(data.result);
-  //   } catch(e) {
-  //     console.log(e.message)
-  //     setError(e.message);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
+    try {
+      const response = await fetch(`http://localhost:3001/api/film/?${encodeURI(params.toString())}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify({ previousFilms: prevFilms }),
+      });
+      if (!response.ok) {
+        throw new Error(`Uh oh... Status: ${response.status}`);
+      }
+      const data = await response.json();
+      const parsedData = JSON.parse(data.result);
+      // save the film title into localStorage
+      prevFilms.push(parsedData.title)
+      localStorage.setItem("previousFilms", JSON.stringify(prevFilms))
+      setFilmData(
+        { 
+          title: parsedData.title, 
+          year: parsedData.year, 
+          director: parsedData.director, 
+          summary: parsedData.summary
+        });
+    } catch(e) {
+      console.log(e.message)
+      setError(e.message);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
