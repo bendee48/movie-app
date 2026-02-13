@@ -1,7 +1,7 @@
-function Result({content}) {
+function Result({ title, year, directory, summary}) {
   return (
     <div>
-      {content}
+      {title}
     </div>
   )
 }

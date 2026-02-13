@@ -30,21 +30,21 @@ function FilmSelector({submitHandler}) {
       </fieldset>
       <fieldset>
         <legend>Runtime</legend>
-        <select name="runtime" id="runtime">
+        <select name="runtime" defaultValue="any length" id="runtime">
           <option value="around 90 mins">around 90 mins</option>
           <option value="less than 180 mins">less than 2 hours</option>
           <option value="less than 270 mins">less than 3 hours</option>
-          <option value="any length" selected>any length</option>
+          <option value="any length">any length</option>
         </select>
       </fieldset>
       <fieldset>
         <legend>Rating</legend>
-        <select name="rating" id="rating">
+        <select name="rating" defaultValue="higher than 5" id="rating">
           <option value="higher than 9">9 or higher</option>
           <option value="higher than 8">8 or higher</option>
           <option value="higher than 7">7 or higher</option>
           <option value="higher than 6">6 or higher</option>
-          <option value="higher than 5" selected>5 or higher</option>
+          <option value="higher than 5">5 or higher</option>
           <option value="less than 5">less than 5</option>
         </select>
       </fieldset>
