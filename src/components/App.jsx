@@ -24,7 +24,9 @@ function App() {
       const data = await response.json();
       const parsedData = JSON.parse(data.result);
       // save the film title into localStorage
-      prevFilms.push(parsedData.title)
+      prevFilms.push(parsedData.title);
+      // after 500 films begin to remove earlier reccomendations
+      if (prevFilms.length > 500) prevFilms.shift();
       localStorage.setItem("previousFilms", JSON.stringify(prevFilms))
       setFilmData(
         { 
