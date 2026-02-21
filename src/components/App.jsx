@@ -4,7 +4,7 @@ import Result from './Result'
 import FilmSelector from './FilmSelector';
 
 function App() {
-  const [filmData, setFilmData] = useState({title: "", year: "", director: "", summary: ""});
+  const [filmData, setFilmData] = useState({title: "", year: "", director: "", stars: "", summary: "", notFound: false});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -32,8 +32,10 @@ function App() {
         { 
           title: parsedData.title, 
           year: parsedData.year, 
-          director: parsedData.director, 
-          summary: parsedData.summary
+          director: parsedData.director,
+          stars: parsedData.stars,
+          summary: parsedData.summary,
+          notFound: false
         });
     } catch(e) {
       console.log(e.message)
@@ -66,16 +68,30 @@ function App() {
       }
       const data = await response.json();
       const parsedData = JSON.parse(data.result);
-      // save the film title into localStorage
-      prevFilms.push(parsedData.title)
-      localStorage.setItem("previousFilms", JSON.stringify(prevFilms))
-      setFilmData(
-        { 
-          title: parsedData.title, 
-          year: parsedData.year, 
-          director: parsedData.director, 
-          summary: parsedData.summary
-        });
+      // Set film as not found if the API can't find one
+      if (parsedData.notFound == 'true') {
+        setFilmData({
+          title: "", 
+          year: "", 
+          director: "",
+          stars: "",
+          summary: "",
+          notFound: true
+        })
+      } else {
+        // save the film title into localStorage
+        prevFilms.push(parsedData.title)
+        localStorage.setItem("previousFilms", JSON.stringify(prevFilms))
+        setFilmData(
+          { 
+            title: parsedData.title, 
+            year: parsedData.year, 
+            director: parsedData.director,
+            stars: parsedData.stars,
+            summary: parsedData.summary,
+            notFound: false
+          });
+      }
     } catch(e) {
       console.log(e.message)
       setError(e.message);
