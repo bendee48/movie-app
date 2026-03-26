@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './App.css'
+import styles from './App.module.css'
 import Result from './Result'
-import FilmSelector from './FilmSelector';
+import FilmSelector from './FilmSelector'
 
 function App() {
   const [filmData, setFilmData] = useState({title: "", year: "", director: "", stars: "", summary: "", notFound: false});
@@ -101,14 +101,14 @@ function App() {
   }
 
   return (
-    <>
+    <div className={styles.app}>
       <h1>Movie App</h1>
       <button onClick={handleGetFilm} disabled={isLoading}>I feel lucky punk</button>
       <FilmSelector submitHandler={handleSubmit}/>
       {isLoading && <p>Thinking...</p>}
       {error && <p>{error}</p>}
       {!isLoading && !error && <Result {...filmData}/>}
-    </>
+    </div>
   )
 }
 

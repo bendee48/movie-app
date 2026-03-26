@@ -1,0 +1,15 @@
+.app {
+  width: 90%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
