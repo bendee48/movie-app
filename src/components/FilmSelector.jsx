@@ -12,6 +12,7 @@ function FilmSelector({submitHandler}) {
           <option value="sci-fi">Sci Fi</option>
           <option value="thriller">Thriller</option>
           <option value="documentary">Documentary</option>
+          <option value="any genre">any genre</option>
         </select>
       </fieldset>
       <fieldset>
@@ -26,11 +27,12 @@ function FilmSelector({submitHandler}) {
           <option value="60s">60s</option>
           <option value="50s">50s</option>
           <option value="pre 50s">pre 50s</option>
+          <option value="any decade">any decade</option>
         </select>
       </fieldset>
       <fieldset>
         <legend>Runtime</legend>
-        <select name="runtime" defaultValue="any length" id="runtime">
+        <select name="runtime" id="runtime">
           <option value="around 90 mins">around 90 mins</option>
           <option value="less than 180 mins">less than 2 hours</option>
           <option value="less than 270 mins">less than 3 hours</option>
@@ -46,6 +48,7 @@ function FilmSelector({submitHandler}) {
           <option value="higher than 6">6 or higher</option>
           <option value="higher than 5">5 or higher</option>
           <option value="less than 5">less than 5</option>
+          <option value="any rating">any rating</option>
         </select>
       </fieldset>
       <fieldset>
@@ -64,6 +67,7 @@ function FilmSelector({submitHandler}) {
           <option value="swedish">Swedish</option>
           <option value="danish">Danish</option>
           <option value="norwegian">Norwegian</option>
+          <option value="any language">any language</option>
         </select>
       </fieldset>
       <button type="submit">Submit</button>
