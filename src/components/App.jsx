@@ -102,8 +102,9 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <h1>Movie App</h1>
+      <h1>What shall I watch?</h1>
       <button onClick={handleGetFilm} disabled={isLoading}>I feel lucky punk</button>
+      <hr className={styles.divider}/>
       <FilmSelector submitHandler={handleSubmit}/>
       {isLoading && <p>Thinking...</p>}
       {error && <p>{error}</p>}

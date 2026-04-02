@@ -1,0 +1,56 @@
+.form_selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  justify-content: center;
+}
+
+.form_selector fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+
+.form_selector legend {
+  font-size: 0.9em;
+  font-weight: 600;
+  padding: 0 6px;
+  color: #555;
+}
+
+.form_selector select {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: var(--thistle-faded);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.form_selector select:focus {
+  outline: none;
+  border-color: #4f46e5;
+}
+
+.break {
+  flex-basis: 100%;
+}
+
+.submit {
+  flex-basis: 25%;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .form_selector > * {
+    flex-grow: 1;
+  }
+
+  .form_selector select {
+    text-align: center;
+  }
+}
