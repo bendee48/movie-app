@@ -11,8 +11,22 @@
 .divider {
   border: none;
   height: 5px;
-  background: linear-gradient(to right, transparent, #333, transparent);
+  background: linear-gradient(to right, transparent, var(--dark-plum), transparent);
   margin: 40px 0;
+}
+
+/* Title */
+
+.what {
+  color: var(--plum);
+}
+
+.me {
+  color: var(--thistle);
+}
+
+.ex_point {
+  color: var(--wisteria);
 }
 
 /* Mobile */
@@ -20,7 +34,7 @@
 @media (max-width: 700px) {
   .app {
     width: 100%;
-    padding: 1em 0;
+    padding: 1em;
   }
 }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import styles from './App.module.css'
 import Result from './Result'
 import FilmSelector from './FilmSelector'
@@ -7,6 +7,13 @@ function App() {
   const [filmData, setFilmData] = useState({title: "", year: "", director: "", stars: "", summary: "", notFound: false});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const loadingRef = useRef(null);
+
+  useEffect(() => {
+    if (loadingRef.current) {
+      loadingRef.current.scrollIntoView({behaviour: "smooth"});
+    }
+  },[]);
 
   async function handleGetFilm() {
     setIsLoading(true);
@@ -102,11 +109,13 @@ function App() {
 
   return (
     <div className={styles.app}>
-      <h1>What shall I watch?</h1>
+      <h1>Tell <span className={styles.me}>me</span> <span className={styles.what}>what</span> to watch<span className={styles.ex_point}>!</span></h1>
       <button onClick={handleGetFilm} disabled={isLoading}>I feel lucky punk</button>
       <hr className={styles.divider}/>
+      <h3>...or finetune a suggestion.</h3>
       <FilmSelector submitHandler={handleSubmit}/>
-      {isLoading && <p>Thinking...</p>}
+      <hr className={styles.divider}/>
+      {isLoading && <p ref={loadingRef}>Thinking...</p>}
       {error && <p>{error}</p>}
       {!isLoading && !error && <Result {...filmData}/>}
     </div>
