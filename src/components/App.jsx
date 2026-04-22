@@ -7,13 +7,13 @@ function App() {
   const [filmData, setFilmData] = useState({title: "", year: "", director: "", stars: "", summary: "", notFound: false});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const loadingRef = useRef(null);
+  const resultsRef = useRef(null);
 
   useEffect(() => {
-    if (loadingRef.current) {
-      loadingRef.current.scrollIntoView({behaviour: "smooth"});
+    if (isLoading || error || filmData.title) {
+      resultsRef.current.scrollIntoView({behaviour: "smooth"});
     }
-  },[]);
+  },[filmData, isLoading, error]);
 
   async function handleGetFilm() {
     setIsLoading(true);
@@ -108,17 +108,31 @@ function App() {
   }
 
   return (
-    <div className={styles.app}>
-      <h1>Tell <span className={styles.me}>me</span> <span className={styles.what}>what</span> to watch<span className={styles.ex_point}>!</span></h1>
-      <button onClick={handleGetFilm} disabled={isLoading}>I feel lucky punk</button>
-      <hr className={styles.divider}/>
-      <h3>...or finetune a suggestion.</h3>
-      <FilmSelector submitHandler={handleSubmit}/>
-      <hr className={styles.divider}/>
-      {isLoading && <p ref={loadingRef}>Thinking...</p>}
-      {error && <p>{error}</p>}
-      {!isLoading && !error && <Result {...filmData}/>}
-    </div>
+    <main className={styles.app}>
+      <header className={styles.header}>
+        <h1>
+          What <span className={styles.plum}>shall</span> <span className={styles.wisteria}>I</span> watch?</h1>
+      </header>
+
+      <section className={styles.actions}>
+        <button onClick={handleGetFilm} disabled={isLoading}>I feel lucky punk</button>
+      </section>
+       
+      <hr className={styles.divider} aria-hidden="true" />
+
+      <section className={styles.filters}>
+        <h3>...or finetune a suggestion.</h3>
+        <FilmSelector submitHandler={handleSubmit}/>
+      </section>
+
+      <hr className={styles.divider} aria-hidden="true" />
+
+      <section className={styles.results} ref={resultsRef} aria-live='polite'>
+        {isLoading && <p>Thinking...</p>}
+        {error && <p role='alert'>{error}</p>}
+        {!isLoading && !error && <Result {...filmData}/>}
+      </section>
+    </main>
   )
 }
 
