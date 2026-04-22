@@ -128,7 +128,7 @@ function App() {
       <hr className={styles.divider} aria-hidden="true" />
 
       <section className={styles.results} ref={resultsRef} aria-live='polite'>
-        {isLoading && <p>Thinking...</p>}
+        {isLoading && <p>Thinking<span className={styles.dots}></span></p>}
         {error && <p role='alert'>{error}</p>}
         {!isLoading && !error && <Result {...filmData}/>}
       </section>
