@@ -4,7 +4,15 @@ import Result from './Result'
 import FilmSelector from './FilmSelector'
 
 function App() {
-  const [filmData, setFilmData] = useState({title: "", year: "", director: "", stars: "", summary: "", notFound: false});
+  const [filmData, setFilmData] = useState({
+    title: "",
+    year: "",
+    director: "",
+    stars: "",
+    summary: "",
+    streaming: [],
+    notFound: false
+  });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const resultsRef = useRef(null);
@@ -42,6 +50,7 @@ function App() {
           director: parsedData.director,
           stars: parsedData.stars,
           summary: parsedData.summary,
+          streaming: parsedData.streaming,
           notFound: false
         });
     } catch(e) {
@@ -83,6 +92,7 @@ function App() {
           director: "",
           stars: "",
           summary: "",
+          streaming: [],
           notFound: true
         })
       } else {
@@ -96,6 +106,7 @@ function App() {
             director: parsedData.director,
             stars: parsedData.stars,
             summary: parsedData.summary,
+            streaming: parsedData.streaming,
             notFound: false
           });
       }
