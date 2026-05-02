@@ -27,6 +27,7 @@ function App() {
   // For the lucky endpoint
   async function handleGetFilm() {
     setIsLoading(true);
+    setError(null);
     const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
 
     try {
@@ -67,6 +68,7 @@ function App() {
   // For the film endpoint with params
   function handleSubmit(e) {
     e.preventDefault()
+    setError(null);
     const formData = new FormData(e.currentTarget)
     const data = Object.fromEntries(formData);
     handleGetFilmWithOptions(data)
