@@ -39,15 +39,38 @@
 }
 
 /* Loading animation */
+.loading {
+  font-size: 1.3em;
+  font-weight: 500;
+  animation: pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite, colorShift 4s ease-in-out infinite;
+  letter-spacing: 0.05em;
+}
+
 .dots::after {
   content: '';
-  animation: dots 1.5s infinite;
+  animation: dots 1.8s ease-in-out infinite;
 }
 
 @keyframes dots {
-  0%, 20% { content: ''; }
-  25% { content: '.'; }
-  50% { content: '..'; }
-  75%, 100% { content: '...'; }
+  0%, 10% { content: ''; }
+  33% { content: '.'; }
+  66% { content: '..'; }
+  100% { content: '...'; }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes colorShift {
+  0%, 100% { color: var(--dark-plum); }
+  50% { color: var(--plum); }
 }
 
