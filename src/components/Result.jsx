@@ -10,9 +10,10 @@ function Result({ title, year, director, actors, summary, streaming, notFound, r
     }
   },[]);
 
-  // if (!title && notFound == false) {
-  //   return null;
-  // }
+  // make sure nothing is displayed on page load
+  if (notFound && reason == null) {
+    return null;
+  }
 
   if (notFound) {
     return (
@@ -28,7 +29,7 @@ function Result({ title, year, director, actors, summary, streaming, notFound, r
         <h3>{title} ({year}) - {director}</h3>
         <h5>Stars: {actors}</h5>
         <p>{summary}</p>
-        <h5>Where to watch</h5>
+        <h4>Where to watch</h4>
         { 
           streaming.length > 0 && streaming[0].service != "" ? (
             streaming.map((item, index) => (
