@@ -8,10 +8,11 @@ function App() {
     title: "",
     year: "",
     director: "",
-    stars: "",
+    actors: "",
     summary: "",
     streaming: [],
-    notFound: false
+    notFound: true,
+    reason: null
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -23,6 +24,7 @@ function App() {
     }
   },[filmData, isLoading, error]);
 
+  // For the lucky endpoint
   async function handleGetFilm() {
     setIsLoading(true);
     const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
@@ -48,10 +50,11 @@ function App() {
           title: parsedData.title, 
           year: parsedData.year, 
           director: parsedData.director,
-          stars: parsedData.stars,
+          actors: parsedData.actors,
           summary: parsedData.summary,
           streaming: parsedData.streaming,
-          notFound: false
+          notFound: false,
+          reason: null
         });
     } catch(e) {
       console.log(e.message)
@@ -61,6 +64,7 @@ function App() {
     }
   }
 
+  // For the film endpoint with params
   function handleSubmit(e) {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
@@ -84,16 +88,18 @@ function App() {
       }
       const data = await response.json();
       const parsedData = JSON.parse(data.result);
+      console.log(parsedData)
       // Set film as not found if the API can't find one
-      if (parsedData.notFound == 'true') {
+      if (parsedData.notFound) {
         setFilmData({
           title: "", 
           year: "", 
           director: "",
-          stars: "",
+          actors: "",
           summary: "",
           streaming: [],
-          notFound: true
+          notFound: true,
+          reason: parsedData.reason
         })
       } else {
         // save the film title into localStorage
@@ -104,10 +110,11 @@ function App() {
             title: parsedData.title, 
             year: parsedData.year, 
             director: parsedData.director,
-            stars: parsedData.stars,
+            actors: parsedData.actors,
             summary: parsedData.summary,
             streaming: parsedData.streaming,
-            notFound: false
+            notFound: false,
+            reason: null
           });
       }
     } catch(e) {
