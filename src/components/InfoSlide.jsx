@@ -36,12 +36,11 @@ const InfoSlide = () => {
       <div ref={slideRef} className={`${styles.infoSlide} ${isOpen ? styles.open : ''}`}>
         <h2>About this app</h2>
         <p>Get film suggestions based on your preferences or, if you're feeling lucky, get a random selection.</p>
-        <p><strong>How to Use:</strong> 
-          <ul>
-            <li>Select from various filters to get more personalized recommendations.</li>
-            <li>Use the 'lucky' button to get a random suggestion.</li>
-          </ul>
-        </p>
+        <p><strong>How to Use:</strong></p>
+        <ul>
+          <li>Select from various filters to get more personalized recommendations.</li>
+          <li>Use the 'lucky' button to get a random suggestion.</li>
+        </ul>
         <p><strong>Important:</strong> Previous film suggestions are stored locally to your browser to promote unique films suggestions.
         Deleting browser data may result in an increase in seeing previously suggested films.</p>
         <p><strong>Privacy:</strong> All data is stored locally on your browser and is not shared with any external servers.</p>

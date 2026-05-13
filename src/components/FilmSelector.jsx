@@ -5,8 +5,8 @@ function FilmSelector({submitHandler}) {
     <form onSubmit={submitHandler} className={styles.form_selector}>
       <fieldset className={styles.fieldset}>
         <legend>Genre</legend>
-        <select name="genre" id="genre">
-          <option value="" disabled selected>Select a genre</option>
+        <select name="genre" id="genre" defaultValue={""}>
+          <option value="" disabled>Select a genre</option>
           <option value="any genre">any genre</option>
           <option value="action">Action</option>
           <option value="comedy">Comedy</option>
@@ -20,8 +20,8 @@ function FilmSelector({submitHandler}) {
       </fieldset>
       <fieldset>
         <legend>Decade</legend>
-        <select name="decade" id="decade">
-          <option value="" disabled selected>Select a decade</option>
+        <select name="decade" id="decade" defaultValue={""}>
+          <option value="" disabled>Select a decade</option>
           <option value="any decade">any decade</option>
           <option value="2020s">2020s</option>
           <option value="2010s">2010s</option>
@@ -36,8 +36,8 @@ function FilmSelector({submitHandler}) {
       </fieldset>
       <fieldset>
         <legend>Runtime</legend>
-        <select name="runtime" id="runtime">
-          <option value="" disabled selected>Select a runtime</option>
+        <select name="runtime" id="runtime" defaultValue={""}>
+          <option value="" disabled>Select a runtime</option>
           <option value="any length">any length</option>
           <option value="around 90 mins">around 90 mins</option>
           <option value="less than 180 mins">less than 2 hours</option>
@@ -46,8 +46,8 @@ function FilmSelector({submitHandler}) {
       </fieldset>
       <fieldset>
         <legend>IMDB Rating</legend>
-        <select name="rating" id="rating">
-          <option value="" disabled selected>Select a rating</option>
+        <select name="rating" id="rating" defaultValue={""}>
+          <option value="" disabled>Select a rating</option>
           <option value="any rating">any rating</option>
           <option value="higher than 9">9 or higher</option>
           <option value="higher than 8">8 or higher</option>
@@ -59,8 +59,8 @@ function FilmSelector({submitHandler}) {
       </fieldset>
       <fieldset>
         <legend>Language</legend>
-        <select name="language" id="language">
-          <option value="" disabled selected>Select a language</option>
+        <select name="language" id="language" defaultValue={""}>
+          <option value="" disabled>Select a language</option>
           <option value="any language">any language</option>
           <option value="english">English</option>
           <option value="french">French</option>
