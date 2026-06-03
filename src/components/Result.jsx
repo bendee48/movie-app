@@ -29,7 +29,7 @@ function Result({ title, year, director, actors, summary, streaming, notFound, r
         <h3>{title} ({year}) - {director}</h3>
         <h5>Stars: {actors}</h5>
         <p>{summary}</p>
-        <h4>Where to watch</h4>
+        {/* <h4>Where to watch</h4>
         { 
           streaming.length > 0 && streaming[0].service != "" ? (
             streaming.map((item, index) => (
@@ -38,7 +38,7 @@ function Result({ title, year, director, actors, summary, streaming, notFound, r
           ) : (
             <p>No streaming information available</p>
           )
-        }
+        } */}
       </div>
     )
   }

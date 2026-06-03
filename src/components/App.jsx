@@ -20,7 +20,7 @@ function App() {
 
   useEffect(() => {
     if (isLoading || error || filmData.title) {
-      resultsRef.current.scrollIntoView({behaviour: "smooth"});
+      resultsRef.current.scrollIntoView({behavior: "smooth"});
     }
   },[filmData, isLoading, error]);
 
