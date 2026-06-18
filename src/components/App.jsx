@@ -90,7 +90,6 @@ function App() {
       }
       const data = await response.json();
       const parsedData = JSON.parse(data.result);
-      console.log(parsedData)
       // Set film as not found if the API can't find one
       if (parsedData.notFound) {
         setFilmData({
@@ -131,7 +130,8 @@ function App() {
     <main className={styles.app}>
       <header className={styles.header}>
         <h1>
-          What <span className={styles.plum}>shall</span> <span className={styles.wisteria}>I</span> watch?</h1>
+          What <span className={styles.plum}>shall</span> <span className={styles.wisteria}>I</span> watch?
+        </h1>
       </header>
 
       <section className={styles.actions}>

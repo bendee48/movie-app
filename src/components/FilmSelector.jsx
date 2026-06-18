@@ -5,6 +5,7 @@ function FilmSelector({submitHandler}) {
     <form onSubmit={submitHandler} className={styles.form_selector}>
       <fieldset className={styles.fieldset}>
         <legend>Genre</legend>
+        <label htmlFor="genre" className="visuallyHidden">Genre</label>
         <select name="genre" id="genre" defaultValue={""}>
           <option value="" disabled>Select a genre</option>
           <option value="any genre">any genre</option>
@@ -20,6 +21,7 @@ function FilmSelector({submitHandler}) {
       </fieldset>
       <fieldset>
         <legend>Decade</legend>
+        <label htmlFor="decade" className="visuallyHidden">Decade</label>
         <select name="decade" id="decade" defaultValue={""}>
           <option value="" disabled>Select a decade</option>
           <option value="any decade">any decade</option>
@@ -36,6 +38,7 @@ function FilmSelector({submitHandler}) {
       </fieldset>
       <fieldset>
         <legend>Runtime</legend>
+        <label htmlFor="runtime" className="visuallyHidden">Runtime</label>
         <select name="runtime" id="runtime" defaultValue={""}>
           <option value="" disabled>Select a runtime</option>
           <option value="any length">any length</option>
@@ -46,6 +49,7 @@ function FilmSelector({submitHandler}) {
       </fieldset>
       <fieldset>
         <legend>IMDB Rating</legend>
+        <label htmlFor="rating" className="visuallyHidden">IMDB Rating</label>
         <select name="rating" id="rating" defaultValue={""}>
           <option value="" disabled>Select a rating</option>
           <option value="any rating">any rating</option>
@@ -59,6 +63,7 @@ function FilmSelector({submitHandler}) {
       </fieldset>
       <fieldset>
         <legend>Language</legend>
+        <label htmlFor="language" className="visuallyHidden">Language</label>
         <select name="language" id="language" defaultValue={""}>
           <option value="" disabled>Select a language</option>
           <option value="any language">any language</option>
