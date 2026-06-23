@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../components/App';
 import FilmSelector from '../components/FilmSelector';
@@ -9,7 +9,6 @@ const mockScrollIntoView = vi.fn();
 window.HTMLElement.prototype.scrollIntoView = mockScrollIntoView;
 
 describe('App Component', () => {
-
   beforeEach(() => {
     // mock a fresh fetch
     vi.stubGlobal('fetch', vi.fn());
@@ -35,9 +34,9 @@ describe('App Component', () => {
       const mockFilmData = {
           title: "Jurassic Park",
           year: "1993",
-          director: "Steven Speilberg",
+          director: "Steven Spielberg",
           actors: "Sam Neill, Laura Dern, Jeff Goldblum",
-          summary: "Dinosuars eat people...",
+          summary: "Dinosaurs eat people...",
           streaming: [
             { "service": "Mubi", "url": "www.mubi.com/j-park" }
           ]
@@ -51,7 +50,7 @@ describe('App Component', () => {
               ok: true,
               json: async () => ({ result: JSON.stringify(mockFilmData) }),
             }), 
-            50
+            10
           )
         )
       );
@@ -70,9 +69,42 @@ describe('App Component', () => {
       // verify loading ends and results are displayed
       await waitForElementToBeRemoved(() => screen.queryByText(/thinking/i))
       await screen.findByRole('heading', { name: /Jurassic Park/i });
+      expect(luckyButton).toBeEnabled();
 
       // verify localstorage is updated
       expect(localStorage.getItem("previousFilms")).toContain("Jurassic Park");
+    })
+
+    it("includes previous films from localStorage in the POST request", async () => {
+      const user =userEvent.setup();
+
+      // seed localStorage with some existing data
+      const mockHistory = ['Jurassic Park', 'The Matrix'];
+      localStorage.setItem('previousFilms', JSON.stringify(mockHistory));
+
+      fetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ result: JSON.stringify({ title: 'Little Shop of Horrors' }) })
+      });
+
+      render(<App/>);
+
+      // click lucky button
+      const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
+      await user.click(luckyButton);
+
+      // check the API is called with the previous films data
+      expect(fetch).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({
+          method: "POST",
+          body: JSON.stringify({ previousFilms: mockHistory }),
+        })
+      );
+
+      // final check that localStorage updates correctly
+      const updatedHistory = JSON.parse(localStorage.getItem('previousFilms'));
+      expect(updatedHistory).toEqual(['Jurassic Park', 'The Matrix', 'Little Shop of Horrors']);
     })
 
     it("successfully displays a film using the 'suggest film' button", async () => {
@@ -131,8 +163,44 @@ describe('App Component', () => {
       const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
       await user.click(luckyButton);
 
+      // verify error message is displayed in results section
       const alertMsg = screen.getByRole('alert');
       expect(alertMsg).toHaveTextContent('Uh oh... Status: 500')
+    })
+
+    it("displays an error message if there's a network error", async () => {
+      const user = userEvent.setup();
+
+      fetch.mockRejectedValueOnce(new Error('Network Error'));
+
+      render(<App/>);
+
+      // click lucky button
+      const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
+      await user.click(luckyButton);
+
+      // verify error message is displayed in results section
+      const alertMsg = screen.getByRole('alert');
+      expect(alertMsg).toHaveTextContent('Network Error');
+    })
+
+    it("displays an error message if JSON is malformed", async () => {
+      const user = userEvent.setup();
+
+      fetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => { throw new SyntaxError('Unexpected token')}
+      });
+
+      render(<App/>);
+
+       // click lucky button
+      const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
+      await user.click(luckyButton);
+
+      // verify error message is displayed in results section
+      const alertMsg = screen.getByRole('alert');
+      expect(alertMsg).toHaveTextContent('Unexpected token');
     })
   })
 });
