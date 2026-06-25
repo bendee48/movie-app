@@ -1,8 +1,15 @@
 import styles from './FilmSelector.module.css'
 
 function FilmSelector({submitHandler}) {
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData);
+    submitHandler(data);
+  }
+
   return (
-    <form onSubmit={submitHandler} className={styles.form_selector}>
+    <form onSubmit={handleSubmit} className={styles.form_selector}>
       <fieldset className={styles.fieldset}>
         <legend>Genre</legend>
         <label htmlFor="genre" className="visuallyHidden">Genre</label>

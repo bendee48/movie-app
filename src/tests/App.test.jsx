@@ -50,7 +50,7 @@ describe('App Component', () => {
               ok: true,
               json: async () => ({ result: JSON.stringify(mockFilmData) }),
             }), 
-            10
+            50
           )
         )
       );

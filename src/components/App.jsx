@@ -65,16 +65,14 @@ function App() {
     }
   }
 
-  // For the film endpoint with params
-  function handleSubmit(e) {
-    e.preventDefault()
-    setError(null);
-    const formData = new FormData(e.currentTarget)
-    const data = Object.fromEntries(formData);
-    handleGetFilmWithOptions(data)
-  }
+  // For the submit from the Film Selector component
+  // function onSubmitData(e) {
+  //   setError(null);
+  //   handleGetFilmWithOptions(data)
+  // }
 
   async function handleGetFilmWithOptions(searchOptions={}) {
+    setError(null)
     setIsLoading(true);
     const params = new URLSearchParams(searchOptions);
     const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
@@ -142,7 +140,7 @@ function App() {
 
       <section className={styles.filters}>
         <h3>...or finetune a suggestion.</h3>
-        <FilmSelector submitHandler={handleSubmit}/>
+        <FilmSelector submitHandler={handleGetFilmWithOptions}/>
       </section>
 
       <hr className={styles.divider} aria-hidden="true" />
