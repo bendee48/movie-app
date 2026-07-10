@@ -6,7 +6,7 @@ function Result({ title, year, director, actors, summary, streaming, notFound, r
 
   useEffect(() => {
     if (resultRef.current) {
-      resultRef.current.scrollIntoView({ behaviour: "smooth"});
+      resultRef.current.scrollIntoView({ behavior: "smooth"});
     }
   },[]);
 
@@ -20,7 +20,7 @@ function Result({ title, year, director, actors, summary, streaming, notFound, r
       <div ref={resultRef} className={styles.result}>
         <p>Unable to find a suitable film.</p>
         <p>Reasoning: {reason}</p>
-        <p>Try widening your search terms</p>
+        <p>Try widening your search terms.</p>
       </div>
     )  
   } else {

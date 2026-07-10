@@ -65,12 +65,6 @@ function App() {
     }
   }
 
-  // For the submit from the Film Selector component
-  // function onSubmitData(e) {
-  //   setError(null);
-  //   handleGetFilmWithOptions(data)
-  // }
-
   async function handleGetFilmWithOptions(searchOptions={}) {
     setError(null)
     setIsLoading(true);
