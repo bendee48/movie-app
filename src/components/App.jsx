@@ -122,7 +122,7 @@ function App() {
     <main className={styles.app}>
       <header className={styles.header}>
         <h1>
-          What <span className={styles.plum}>shall</span> <span className={styles.wisteria}>I</span> watch?
+          What <span className={styles.plum}>film</span> shall <span className={styles.wisteria}>I</span> watch?
         </h1>
       </header>
 

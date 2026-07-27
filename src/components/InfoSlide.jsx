@@ -33,7 +33,7 @@ const InfoSlide = () => {
       <button ref={buttonRef} className={styles.infoButton} onClick={toggleSlide}>
         ?
       </button>
-      <div ref={slideRef} className={`${styles.infoSlide} ${isOpen ? styles.open : ''}`}>
+      <div ref={slideRef} data-testid="info-slide" className={`${styles.infoSlide} ${isOpen ? styles.open : ''}`}>
         <h2>About this app</h2>
         <p>Get film suggestions based on your preferences or, if you're feeling lucky, get a random selection.</p>
         <p><strong>How to Use:</strong></p>

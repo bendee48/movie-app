@@ -20,7 +20,7 @@ describe('App Component', () => {
     it('renders the initial layout correctly', () => {
       render(<App/>)
       
-      expect(screen.getByRole('heading', { name: /what shall i watch\?/i })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /what film shall i watch\?/i })).toBeInTheDocument();
       expect(screen.getByRole('button', { name: /i feel lucky/i })).toBeInTheDocument();
       // check for the presence of the FilmSelector component
       expect(screen.getByRole('button', { name: /suggest film/i })).toBeInTheDocument();
