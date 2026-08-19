@@ -28,9 +28,9 @@ function App() {
   async function handleGetFilm() {
     setIsLoading(true);
     setError(null);
-    const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
-
+    
     try {
+      const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
       const response = await fetch("http://localhost:3001/api/film/lucky" , {
         method: "POST",
         headers: { "Content-Type": "application/json"},
@@ -69,9 +69,9 @@ function App() {
     setError(null)
     setIsLoading(true);
     const params = new URLSearchParams(searchOptions);
-    const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
-
+    
     try {
+      const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
       const response = await fetch(`http://localhost:3001/api/film/?${encodeURI(params.toString())}`, {
         method: "POST",
         headers: { "Content-Type": "application/json"},
