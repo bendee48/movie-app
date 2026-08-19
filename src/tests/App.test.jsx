@@ -149,7 +149,7 @@ describe('App Component', () => {
       await user.click(luckyButton);
 
       // verify error message is displayed in results section
-      const alertMsg = screen.getByRole('alert');
+      const alertMsg = await screen.findByRole('alert');
       expect(alertMsg).toHaveTextContent('Uh oh... Status: 500')
     })
 
@@ -286,7 +286,7 @@ describe('App Component', () => {
       const suggestFilmButton = screen.getByRole('button', { name: /suggest film/i });
       await user.click(suggestFilmButton);
 
-      const alertMsg = screen.getByRole('alert');
+      const alertMsg = await screen.findByRole('alert');
       expect(alertMsg).toHaveTextContent('Uh oh... Status: 500')
     })
   })
