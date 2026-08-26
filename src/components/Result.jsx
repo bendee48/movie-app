@@ -1,7 +1,7 @@
 import {useRef, useEffect } from 'react';
 import styles from './Result.module.css';
 
-function Result({ title, year, director, actors, summary, streaming, notFound, reason}) {
+function Result({ title, year, director, actors, summary, notFound, reason}) {
   const resultRef = useRef(null);
 
   useEffect(() => {
