@@ -44,8 +44,8 @@ function App() {
       const parsedData = JSON.parse(data.result);
       // save the film title into localStorage
       prevFilms.push(parsedData.title);
-      // after 500 films begin to remove earlier reccomendations
-      if (prevFilms.length > 500) prevFilms.shift();
+      // after 200 films begin to remove earlier reccomendations
+      if (prevFilms.length > 200) prevFilms.shift();
       localStorage.setItem("previousFilms", JSON.stringify(prevFilms))
       setFilmData(
         { 
@@ -98,8 +98,8 @@ function App() {
       } else {
         // save the film title into localStorage
         prevFilms.push(parsedData.title)
-        // after 500 films begin to remove earlier reccomendations
-        if (prevFilms.length > 500) prevFilms.shift();
+        // after 200 films begin to remove earlier reccomendations
+        if (prevFilms.length > 200) prevFilms.shift();
         localStorage.setItem("previousFilms", JSON.stringify(prevFilms))
         setFilmData(
           { 
