@@ -43,7 +43,7 @@ const InfoSlide = () => {
         </ul>
         <p><strong>Important:</strong> Previous film suggestions are stored locally to your browser to promote unique films suggestions.
         Deleting browser data may result in an increase in seeing previously suggested films.</p>
-        <p><strong>Privacy:</strong> All data is stored locally on your browser and is not shared with any external servers.</p>
+        <p><strong>Privacy:</strong> Your preferences are sent to our API, which uses AI to generate film recommendations. Your recommendation history is stored locally in your browser.</p>
       </div>
     </>
   );
