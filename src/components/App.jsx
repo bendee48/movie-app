@@ -17,6 +17,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const resultsRef = useRef(null);
+  const API_URL = import.meta.env.VITE_API_URL || "";
 
   useEffect(() => {
     if (isLoading || error || filmData.title) {
@@ -31,7 +32,7 @@ function App() {
     
     try {
       const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
-      const response = await fetch("http://localhost:3001/api/film/lucky" , {
+      const response = await fetch(`${API_URL}/api/film/lucky`, {
         method: "POST",
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify({ previousFilms: prevFilms }),
@@ -72,7 +73,7 @@ function App() {
     
     try {
       const prevFilms = JSON.parse(localStorage.getItem("previousFilms")) || [];
-      const response = await fetch(`http://localhost:3001/api/film/?${encodeURI(params.toString())}`, {
+      const response = await fetch(`${API_URL}/api/film/?${encodeURI(params.toString())}`, {
         method: "POST",
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify({ previousFilms: prevFilms }),
