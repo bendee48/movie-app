@@ -3,6 +3,11 @@ import styles from './App.module.css'
 import Result from './Result'
 import FilmSelector from './FilmSelector'
 
+/**
+ * Main application component for the movie app.
+ * It handles random recommendations, filtered suggestions, loading/error states,
+ * and the local recommendation history used to avoid repetitive results.
+ */
 function App() {
   const [filmData, setFilmData] = useState({
     title: "",
@@ -19,13 +24,18 @@ function App() {
   const resultsRef = useRef(null);
   const API_URL = import.meta.env.VITE_API_URL || "";
 
+  // Scroll to the results section when a new film is loaded, or when an error occurs.
   useEffect(() => {
     if (isLoading || error || filmData.title) {
       resultsRef.current.scrollIntoView({behavior: "smooth"});
     }
   },[filmData, isLoading, error]);
 
-  // For the lucky endpoint
+  /**
+   * Requests a random film recommendation from the backend and stores the result
+   * in localStorage to avoid repeating films too often.
+   * @returns {Promise<void>}
+   */
   async function handleGetFilm() {
     setIsLoading(true);
     setError(null);
@@ -37,16 +47,20 @@ function App() {
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify({ previousFilms: prevFilms }),
       });
+
       if (!response.ok) {
         throw new Error(`Uh oh... Status: ${response.status}`);
       }
+      
       const data = await response.json();
       const parsedData = JSON.parse(data.result);
-      // save the film title into localStorage
+
+      // Save film titles into localStorage to send to API for future requests
       prevFilms.push(parsedData.title);
-      // after 200 films begin to remove earlier reccomendations
+      // Keep previous film history trimmed to the last 200 films to avoid excessive localStorage usage
       if (prevFilms.length > 200) prevFilms.shift();
-      localStorage.setItem("previousFilms", JSON.stringify(prevFilms))
+      localStorage.setItem("previousFilms", JSON.stringify(prevFilms));
+
       setFilmData(
         { 
           title: parsedData.title, 
@@ -66,6 +80,11 @@ function App() {
     }
   }
 
+  /**
+   * Requests a film based on user-selected filters.
+   * @param {Object} [searchOptions={}] Form values such as genre, decade, runtime, rating, and language.
+   * @returns {Promise<void>}
+   */
   async function handleGetFilmWithOptions(searchOptions={}) {
     setError(null)
     setIsLoading(true);
@@ -78,12 +97,15 @@ function App() {
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify({ previousFilms: prevFilms }),
       });
+
       if (!response.ok) {
         throw new Error(`Uh oh... Status: ${response.status}`);
       }
+
       const data = await response.json();
       const parsedData = JSON.parse(data.result);
-      // Set film as not found if the API can't find one
+
+      // API may return a notFound response if no films match the filters
       if (parsedData.notFound) {
         setFilmData({
           title: "", 
@@ -96,9 +118,7 @@ function App() {
           reason: parsedData.reason
         })
       } else {
-        // save the film title into localStorage
         prevFilms.push(parsedData.title)
-        // after 200 films begin to remove earlier reccomendations
         if (prevFilms.length > 200) prevFilms.shift();
         localStorage.setItem("previousFilms", JSON.stringify(prevFilms))
         setFilmData(

@@ -1,16 +1,29 @@
 import {useRef, useEffect } from 'react';
 import styles from './Result.module.css';
 
+/**
+ * Displays a successful film result or a no-match message.
+ * @param {{
+ *   title?: string,
+ *   year?: string,
+ *   director?: string,
+ *   actors?: string,
+ *   summary?: string,
+ *   notFound?: boolean,
+ *   reason?: string | null
+ * }} props
+ */
 function Result({ title, year, director, actors, summary, notFound, reason}) {
   const resultRef = useRef(null);
 
+  // Scroll the result box into view when it is rendered
   useEffect(() => {
     if (resultRef.current) {
       resultRef.current.scrollIntoView({ behavior: "smooth"});
     }
   },[]);
 
-  // make sure nothing is displayed on page load
+  // Ensure result box isn't displayed on page load
   if (notFound && reason == null) {
     return null;
   }

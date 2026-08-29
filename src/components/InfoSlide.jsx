@@ -1,16 +1,27 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './InfoSlide.module.css';
 
+/**
+ * A floating help panel for explaining how the app works and clarifying privacy/history behavior.
+ * It opens from a question-mark button and closes when the user clicks outside the panel.
+ */
 const InfoSlide = () => {
   const [isOpen, setIsOpen] = useState(false);
   const slideRef = useRef(null);
   const buttonRef = useRef(null);
 
+  /**
+   * Toggles the visibility of the info panel.
+   */
   const toggleSlide = () => {
     setIsOpen(!isOpen);
   };
 
   useEffect(() => {
+    /**
+     * Closes the panel when a click event happens outside the slide content or trigger button.
+     * @param {MouseEvent} event - The click event used to detect outside interaction.
+     */
     const handleClickOutside = (event) => {
       if (slideRef.current && !slideRef.current.contains(event.target) && event.target !== buttonRef.current) {
         setIsOpen(false);

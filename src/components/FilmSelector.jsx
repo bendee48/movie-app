@@ -1,6 +1,15 @@
 import styles from './FilmSelector.module.css'
 
+/**
+ * Renders the movie-filter form and submits the selected values to the parent handler.
+ * @param {Object} props
+ * @param {Function} props.submitHandler Called with the selected filter values.
+ */
 function FilmSelector({submitHandler}) {
+  /**
+   * Converts the form submission into a plain object and passes it to the app handler.
+   * @param {Event} e The form submit event.
+   */
   function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
