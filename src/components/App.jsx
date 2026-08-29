@@ -15,7 +15,6 @@ function App() {
     director: "",
     actors: "",
     summary: "",
-    streaming: [],
     notFound: true,
     reason: null
   });
@@ -68,7 +67,6 @@ function App() {
           director: parsedData.director,
           actors: parsedData.actors,
           summary: parsedData.summary,
-          streaming: parsedData.streaming,
           notFound: false,
           reason: null
         });
@@ -113,7 +111,6 @@ function App() {
           director: "",
           actors: "",
           summary: "",
-          streaming: [],
           notFound: true,
           reason: parsedData.reason
         })
@@ -128,7 +125,6 @@ function App() {
             director: parsedData.director,
             actors: parsedData.actors,
             summary: parsedData.summary,
-            streaming: parsedData.streaming,
             notFound: false,
             reason: null
           });
