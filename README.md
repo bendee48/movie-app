@@ -1,16 +1,66 @@
-# React + Vite
+# What Film Shall I Watch?
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A movie recommendation app.
 
-Currently, two official plugins are available:
+Gives users a quick way to decide what film to watch by offering either a random “lucky pick” or a more tailored recommendation based on filters like genre, decade, runtime, rating, and language.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## React Compiler
+The app is designed as a lightweight, user-friendly film discovery experience. 
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This is the React frontend which speaks to an AI backed [Express API Backend](https://github.com/bendee48/movie-api) which handles the reccomendations.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- One-click “I feel lucky” film recommendation
+- Filtered recommendations by genre, decade, runtime, IMDb rating, and language
+- Clean result display with title, year, director, cast, and summary
+- Loading and error states
+- LocalStorage-based recommendation history to avoid repeat suggestions
+- Responsive styling
+
+## Tech Stack
+
+- React
+- Vite
+- JavaScript
+- CSS Modules
+- Vitest
+- Testing Library
+- ESLint
+
+## How it works
+
+1. The user either clicks the lucky-button or fills in search filters.
+2. The browser sends the request to the movie API.
+3. A film recommendation is returned and displayed in the UI.
+4. If no movie matches the criteria, the app shows a helpful message and invites the user to widen the search.
+
+## Local setup
+
+To run the project locally:
+
+```bash
+npm install
+npm run dev
+```
+
+To run the tests:
+
+```bash
+npm run tests
+```
+
+## Environment
+
+This project expects a movie API base URL to be available through the VITE_API_URL environment variable.
+
+Example:
+
+```bash
+VITE_API_URL=http://localhost:3000
+```
+
+## Live Version
+[What Film Shall I Watch?](https://whatfilmshalliwatch.netlify.app/)
+
