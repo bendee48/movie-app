@@ -23,7 +23,7 @@ function FilmSelector({submitHandler}) {
         <legend>Genre</legend>
         <label htmlFor="genre" className="visuallyHidden">Genre</label>
         <select name="genre" id="genre" defaultValue={""}>
-          <option value="" disabled>Select a genre</option>
+          <option value="" disabled>Select genre</option>
           <option value="any genre">any genre</option>
           <option value="action">Action</option>
           <option value="comedy">Comedy</option>
@@ -39,7 +39,7 @@ function FilmSelector({submitHandler}) {
         <legend>Decade</legend>
         <label htmlFor="decade" className="visuallyHidden">Decade</label>
         <select name="decade" id="decade" defaultValue={""}>
-          <option value="" disabled>Select a decade</option>
+          <option value="" disabled>Select decade</option>
           <option value="any decade">any decade</option>
           <option value="2020s">2020s</option>
           <option value="2010s">2010s</option>
@@ -56,7 +56,7 @@ function FilmSelector({submitHandler}) {
         <legend>Runtime</legend>
         <label htmlFor="runtime" className="visuallyHidden">Runtime</label>
         <select name="runtime" id="runtime" defaultValue={""}>
-          <option value="" disabled>Select a runtime</option>
+          <option value="" disabled>Select runtime</option>
           <option value="any length">any length</option>
           <option value="around 90 mins">around 90 mins</option>
           <option value="less than 180 mins">less than 2 hours</option>
@@ -67,7 +67,7 @@ function FilmSelector({submitHandler}) {
         <legend>IMDB Rating</legend>
         <label htmlFor="rating" className="visuallyHidden">IMDB Rating</label>
         <select name="rating" id="rating" defaultValue={""}>
-          <option value="" disabled>Select a rating</option>
+          <option value="" disabled>Select rating</option>
           <option value="any rating">any rating</option>
           <option value="higher than 9">9 or higher</option>
           <option value="higher than 8">8 or higher</option>
@@ -81,7 +81,7 @@ function FilmSelector({submitHandler}) {
         <legend>Language</legend>
         <label htmlFor="language" className="visuallyHidden">Language</label>
         <select name="language" id="language" defaultValue={""}>
-          <option value="" disabled>Select a language</option>
+          <option value="" disabled>Select language</option>
           <option value="any language">any language</option>
           <option value="english">English</option>
           <option value="french">French</option>
