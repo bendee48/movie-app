@@ -18,7 +18,6 @@ describe("Result Component", () => {
           director: "Alfonso Cuarón",
           actors: "Maribel Verdú, Gael García Bernal, Diego Luna",
           summary: "In Mexico, two teenage boys and an attractive older woman embark on a road trip and learn a thing or two about life, friendship, sex, and each other.",
-          streaming: [],
           notFound: false,
           reason: null
         }
@@ -39,7 +38,6 @@ describe("Result Component", () => {
           director: "",
           actors: "",
           summary: "",
-          streaming: [],
           notFound: true,
           reason: "Couldn't find any films about extreme knitting, in Korean from before the 1950s."
         }
@@ -58,7 +56,6 @@ describe("Result Component", () => {
           director: "",
           actors: "",
           summary: "",
-          streaming: [],
           notFound: true,
           reason: null
         }
