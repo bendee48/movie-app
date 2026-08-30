@@ -5,6 +5,7 @@
   --thistle: #D0C4DF;
   --thistle-faded: #d0c4df4b;
   --plum: #DCABDF;
+  --plum-faded: #d5b0d7;
   --dark-plum: #650374;
   --wisteria: #ac68cb;
 
@@ -48,7 +49,7 @@ button {
 
 button:hover {
   border-color: var(--dark-grey-faded);
-  background-color: var(--thistle);
+  background-color: var(--plum-faded);
   color: var(--dark-grey);
 }
 

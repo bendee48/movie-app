@@ -145,15 +145,16 @@ function App() {
         </h1>
       </header>
 
-      <section className={styles.actions}>
-        <button onClick={handleGetFilm} disabled={isLoading}>I feel lucky punk</button>
+      <section className={styles.filters}>
+        <h2>Choose your preferences</h2>
+        <FilmSelector submitHandler={handleGetFilmWithOptions}/>
       </section>
-       
+
       <hr className={styles.divider} aria-hidden="true" />
 
-      <section className={styles.filters}>
-        <h3>...or finetune a suggestion.</h3>
-        <FilmSelector submitHandler={handleGetFilmWithOptions}/>
+      <section className={styles.actions}>
+        <h2 className={styles.h2}>... or perhaps you've got to ask yourself one question.</h2>
+        <button onClick={handleGetFilm} disabled={isLoading}>Do I feel lucky?</button>
       </section>
 
       <hr className={styles.divider} aria-hidden="true" />

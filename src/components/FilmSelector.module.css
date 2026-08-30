@@ -1,11 +1,11 @@
 .form_selector {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.5em;
-  justify-content: center;
 }
 
 .form_selector fieldset {
+  min-width: 0;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 16px;
@@ -40,18 +40,29 @@
 }
 
 .submit {
-  flex-basis: 25%;
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 20rem);
   margin-top: 1em;
+  background-color: var(--wisteria);
+  color: #fff;
+  border-color: var(--wisteria);
 }
 
 /* Mobile */
 
 @media (max-width: 700px) {
-  .form_selector > * {
-    flex-grow: 1;
+  .form_selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .form_selector select {
     text-align: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .form_selector {
+    grid-template-columns: 1fr;
   }
 }

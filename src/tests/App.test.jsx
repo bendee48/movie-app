@@ -20,13 +20,13 @@ describe('App Component', () => {
       render(<App/>)
 
       expect(screen.getByRole('heading', { name: /what film shall i watch\?/i })).toBeInTheDocument();
-      expect(screen.getByRole('button', { name: /i feel lucky/i })).toBeInTheDocument();
       // check for the presence of the FilmSelector component
       expect(screen.getByRole('button', { name: /suggest film/i })).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: /Do I feel lucky?/i })).toBeInTheDocument();
     })
   });
 
-  describe('"I feel lucky" endpoint', () => {
+  describe('"Lucky" endpoint', () => {
     it('successfully fetches and displays a film', async () => {
       const user = userEvent.setup();
 
@@ -36,9 +36,6 @@ describe('App Component', () => {
           director: "Steven Spielberg",
           actors: "Sam Neill, Laura Dern, Jeff Goldblum",
           summary: "Dinosaurs eat people...",
-          streaming: [
-            { "service": "Mubi", "url": "www.mubi.com/j-park" }
-          ]
         }
 
       // adding a timeout to simulate the request taking a little while, to test loading states etc
@@ -57,7 +54,7 @@ describe('App Component', () => {
       render(<App/>);
 
       // click lucky button
-      const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
+      const luckyButton = screen.getByRole('button', { name: /Do I feel lucky?/i });
       await user.click(luckyButton);
 
       // verify loading state
@@ -89,7 +86,7 @@ describe('App Component', () => {
       render(<App/>);
 
       // click lucky button
-      const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
+      const luckyButton = screen.getByRole('button', { name: /Do I feel lucky?/i });
       await user.click(luckyButton);
 
       // check the API is called with the previous films data
@@ -120,7 +117,7 @@ describe('App Component', () => {
 
       render(<App/>);
 
-      const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
+      const luckyButton = screen.getByRole('button', { name: /Do I feel lucky?/i });
       await user.click(luckyButton);
 
       await screen.findByRole('heading', { name: /The New Film/i });
@@ -145,7 +142,7 @@ describe('App Component', () => {
       render(<App/>);
 
       // click lucky button
-      const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
+      const luckyButton = screen.getByRole('button', { name: /Do I feel lucky?/i });
       await user.click(luckyButton);
 
       // verify error message is displayed in results section
@@ -161,7 +158,7 @@ describe('App Component', () => {
       render(<App/>);
 
       // click lucky button
-      const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
+      const luckyButton = screen.getByRole('button', { name: /Do I feel lucky?/i });
       await user.click(luckyButton);
 
       // verify error message is displayed in results section
@@ -180,7 +177,7 @@ describe('App Component', () => {
       render(<App/>);
 
        // click lucky button
-      const luckyButton = screen.getByRole('button', { name: /i feel lucky/i });
+      const luckyButton = screen.getByRole('button', { name: /Do I feel lucky?/i });
       await user.click(luckyButton);
 
       // verify error message is displayed in results section

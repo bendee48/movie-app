@@ -16,6 +16,52 @@
   margin: 40px 0;
 }
 
+.filters {
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid var(--thistle);
+  border-radius: 8px;
+  background-color: var(--shell);
+}
+
+.filters h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: var(--dark-plum);
+}
+
+.filters button:hover {
+  background-color: var(--plum);
+  color: var(--dark-grey);
+}
+
+.filters + .divider {
+  margin-bottom: 1.5rem;
+}
+
+.actions {
+  padding: 0.75rem 0 1rem;
+  opacity: 0.8;
+}
+
+.actions button {
+  border-width: 1px;
+  font-size: 0.95rem;
+}
+
+.actions h2 {
+  max-width: 42rem;
+  margin: 0 auto 0.75rem;
+  font-size: 1.15rem;
+  color: var(--dark-plum);
+}
+
+.actions + .divider {
+  margin-top: 1.5rem;
+}
+
 /* Title */
 
 .plum {
@@ -36,6 +82,15 @@
   .app {
     width: 100%;
     padding: 1em;
+  }
+
+  .filters {
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+
+  .filters h2 {
+    font-size: 1.5rem;
   }
 }
 
